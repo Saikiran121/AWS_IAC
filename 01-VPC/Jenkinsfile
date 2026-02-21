@@ -38,6 +38,11 @@ pipeline {
         }
 
         stage("Terraform Apply") {
+            input {
+                message "Review the Terraform Plan. Do you want to apply the changes?"
+                ok "Yes, Apply changes"
+                submitter "admin"
+            }
             steps {
                 dir('01-VPC') {
                     sh 'terraform apply -auto-approve plan.out'
