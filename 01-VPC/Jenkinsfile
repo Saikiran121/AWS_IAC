@@ -15,7 +15,9 @@ pipeline {
 
         stage("Terraform init") {
             steps {
-                sh 'terraform init'
+                dir('01-VPC') {
+                    sh 'terraform init'
+                }
             }
         }
     }
