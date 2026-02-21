@@ -1,10 +1,21 @@
 pipeline {
     agent any 
 
+    environment {
+        AWS_REGION = "ap-south-1"
+        AWS_CREDENTIALS = credentials('aws-terraform-creds')
+    }
+
     stages {
         stage("Check Terraform Version") {
             steps {
                 sh "terraform --version"
+            }
+        }
+
+        stage("Terraform init") {
+            steps {
+                sh 'terraform init'
             }
         }
     }
