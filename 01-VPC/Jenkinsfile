@@ -28,5 +28,13 @@ pipeline {
                 }
             }
         }
+
+        stage("Terraform Plan") {
+            steps {
+                dir('01-VPC') {
+                    sh 'terraform plan -out=plan.out'
+                }
+            }
+        }
     }
 }
