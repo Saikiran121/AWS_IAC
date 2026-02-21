@@ -20,5 +20,13 @@ pipeline {
                 }
             }
         }
+
+        stage("Terraform Validate") {
+            steps {
+                dir('01-VPC') {
+                    sh 'terraform validate'
+                }
+            }
+        }
     }
 }
