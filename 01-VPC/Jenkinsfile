@@ -49,5 +49,19 @@ pipeline {
                 }
             }
         }
+
+        // You can comment this step as im only doing this to destroy the created resources
+        stage("Terraform Destroy") {
+            input {
+                message "Review the Terraform Plan. Do you want to destroy the changes?"
+                ok "Yes, Destroy changes"
+                submitter "admin"
+            }
+            steps {
+                dir('01-VPC') {
+                    sh 'terraform destroy -auto-approve'
+                }
+            }
+        }
     }
 }
